@@ -5,7 +5,9 @@ app = Flask(__name__)
 
 def log_request(req: 'flask_request', res: str) -> None:
     with open('vsearch.log', 'a') as log:
-        print(str(dir(req)), res, file=log)
+        print(req.form, file=log)
+        print(req.remote_addr, file=log)
+        print(req.user_agent, file=log)
 
 @app.route('/search4', methods=['POST'])
 def do_search() -> 'html':
@@ -16,7 +18,7 @@ def do_search() -> 'html':
     log_request(request, results)
     return render_template('results.html',
                             the_title=title,
-                            the_phrase=phrase,
+                            the_phrase=phrase,                                                                                                                 
                             the_letters=letters,
                             the_results=results,)
 
