@@ -18,7 +18,7 @@ def do_search() -> 'html':
     log_request(request, results)
     return render_template('results.html',
                             the_title=title,
-                            the_phrase=phrase,                                                                                                                 
+                            the_phrase=phrase,
                             the_letters=letters,
                             the_results=results,)
 
